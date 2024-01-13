@@ -1,7 +1,10 @@
+import { api } from '@/data/api'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Home() {
+  api('/products')
+
   return (
     <div className="grid-rows-6 grid max-h-[860px] grid-cols-9 gap-6">
       <Link
