@@ -4,8 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 async function getFeaturedProducts(): Promise<Product[]> {
-  await new Promise((resolve) => setTimeout(resolve, 5000))
-
   const response = await api('/products/featured', {
     cache: 'no-store',
     next: {
