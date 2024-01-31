@@ -1,3 +1,4 @@
+import { convertNumberToPrice } from '@/utils/price'
 import data from '../data.json'
 
 export async function GET() {
@@ -6,12 +7,7 @@ export async function GET() {
     .map((product) => {
       return {
         ...product,
-        price: product.price.toLocaleString('pt-br', {
-          style: 'currency',
-          currency: 'BRL',
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        }),
+        price: convertNumberToPrice(product.price),
       }
     })
 

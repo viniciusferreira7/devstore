@@ -1,6 +1,7 @@
+import { convertNumberToPrice } from '@/utils/price'
+import { NextRequest } from 'next/server'
 import { z } from 'zod'
 import data from '../data.json'
-import { NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl
@@ -14,12 +15,7 @@ export async function GET(request: NextRequest) {
     .map((product) => {
       return {
         ...product,
-        price: product.price.toLocaleString('pt-br', {
-          style: 'currency',
-          currency: 'BRL',
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        }),
+        price: convertNumberToPrice(product.price),
       }
     })
 

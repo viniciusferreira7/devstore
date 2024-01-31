@@ -1,6 +1,7 @@
 import { AddToCartButton } from '@/app/components/add-to-cart-button'
 import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
+import { convertNumberToPrice } from '@/utils/price'
 import { Metadata } from 'next'
 import Image from 'next/image'
 
@@ -62,19 +63,10 @@ export default async function ProductPage({ params }: ProductProps) {
         </p>
         <div className="mt-8 flex items-center gap-3">
           <span className="inline-block rounded-full bg-violet-500 px-5 py-2.5 font-semibold">
-            {product.price.toLocaleString('pt-br', {
-              style: 'currency',
-              currency: 'BRL',
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0,
-            })}
+            {convertNumberToPrice(product.price)}
           </span>
           <span className="text-small text-zinc-400">
-            Em 12x s/ juros de{' '}
-            {(product.price / 12).toLocaleString('pt-br', {
-              style: 'currency',
-              currency: 'BRL',
-            })}
+            Em 12x s/ juros de {convertNumberToPrice(product.price / 12)}
           </span>
         </div>
         <div className="mt-8 space-y-4">
